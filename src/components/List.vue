@@ -2,6 +2,9 @@
    <div class="card-body">
       <ul class="list-group">
          <ItemList />
+         <ItemList />
+         <ItemList />
+         <ItemList />
       </ul>
    </div>
 </template>
