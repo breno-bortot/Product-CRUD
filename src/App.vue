@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="card border-success mb-3">
-      <Header title="Product CRUD" />
+      <Header @search-submit="filterAction"  title="Product CRUD" />
       <List />
-      <Footer />
+      <!-- <Footer /> -->
     </div>
   </div>
 </template>
@@ -18,6 +18,11 @@ export default {
     Header,
     List,
   },
+  methods: {
+     filterAction(searchInput) {
+        console.log(searchInput);
+     }
+  }
 };
 </script>
 

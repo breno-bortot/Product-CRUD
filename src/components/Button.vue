@@ -1,5 +1,5 @@
 <template >
-  <div class="float-end">
+  <div class="float-end mt-2">
     <button
       type="button"
       class="btn btn-primary"

@@ -2,25 +2,12 @@
   <div class="card-header">
     <Button />
     <h1>{{ title }}</h1>
-
-    <div class="container">
-      <div class="form-group row">
-        <label for="search" class="col-sm-2 col-form-label">Search</label>
-        <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            id="search"
-            v-model="search"
-            placeholder="search here"
-          />
-        </div>
-      </div>
-    </div>
+    <SearchBar  @search-submit="getSearchInput"/>
   </div>
 </template>
 <script>
 import Button from "./Button.vue";
+import SearchBar from "./SearchBar.vue";
 
 export default {
   name: "Header",
@@ -29,13 +16,16 @@ export default {
   },
   components: {
     Button,
+    SearchBar
   },
-  data() {
-    return {
-      searchInput: "",
-    };
-  },
+  emits: ['search-submit'],
+  methods: {
+     getSearchInput(searchInput) {
+         this.$emit('search-submit', searchInput)
+     }
+  }
 };
+   
 </script>
 <style>
 </style>
