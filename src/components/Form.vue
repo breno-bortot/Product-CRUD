@@ -1,5 +1,5 @@
 <template>
-  <div>
+
    <div class="modal-body">
       <form @submit="$emit('form-submit', formData)">
          <fieldset>
@@ -47,8 +47,7 @@
             </div>
          </div>
          </fieldset>
-      </form>
-         <div class="modal-footer">
+          <div class="modal-footer">
                <button type="submit" class="btn btn-success">Add</button>
                <button
                type="button"
@@ -58,9 +57,10 @@
                Close
                </button>
          </div>
+      </form>
    </div>
 
-  </div>
+
 </template>
 <script>
 export default {
