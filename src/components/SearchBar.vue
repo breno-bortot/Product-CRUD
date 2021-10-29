@@ -3,7 +3,7 @@
          <div class="form-group row">
             <label for="search" class="form-label mt-4">Search</label>
             <div class="input-group mb-3">
-               <input
+               <input @keyup.enter="$emit('search-submit', searchInput)"
                type="text"
                class="col-sm-8 form-control"
                id="search"
@@ -11,7 +11,7 @@
                placeholder="search here"
                   />
 
-               <button  @click="$emit('search-submit', searchInput)"  class="btn btn-primary" type="button" id="button-addon2">Button</button>
+               <button @click="$emit('search-submit', searchInput)"  class="btn btn-primary" type="button" id="button-addon2">Button</button>
             </div>
            
          </div>
@@ -24,7 +24,7 @@ export default {
       return {
          searchInput: "",
       }
-   }
+   },
 }
 </script>
 <style>

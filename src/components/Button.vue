@@ -28,19 +28,9 @@
               <span aria-hidden="true"></span>
             </button>
           </div>
-          <div class="modal-body">
-            <Form />
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success">Add</button>
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
+         
+            <Form @form-submit="getData" />
+      
         </div>
       </div>
     </div>
@@ -54,6 +44,14 @@ export default {
   components: {
     Form,
   },
+  emits: ['form-submit'], 
+  methods: {
+     getData(data){
+        this.$emit('form-submit', data)
+        console.log(data)
+     }
+
+  }
 };
 </script>
 <style>
