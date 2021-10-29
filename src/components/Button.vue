@@ -48,7 +48,6 @@ export default {
   methods: {
      getData(data){
         this.$emit('form-submit', data)
-        console.log(data)
      }
 
   }

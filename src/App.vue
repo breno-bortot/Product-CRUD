@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="card border-success mb-3">
-      <Header @search-submit="filterAction"  title="Product CRUD" />
+      <Header @form-submit="addProduct" @search-submit="filterAction"  title="Product CRUD" />
       <List />
       <!-- <Footer /> -->
     </div>
@@ -21,6 +21,9 @@ export default {
   methods: {
      filterAction(searchInput) {
         console.log(searchInput);
+     },
+     addProduct(data) {
+        console.log(data.name)
      }
   }
 };

@@ -1,8 +1,8 @@
 <template>
   <div class="card-header">
-    <Button />
+    <Button  @form-submit="getData"/>
     <h1>{{ title }}</h1>
-    <SearchBar  @search-submit="getSearchInput"/>
+    <SearchBar @search-submit="getSearchInput"/>
   </div>
 </template>
 <script>
@@ -18,10 +18,14 @@ export default {
     Button,
     SearchBar
   },
-  emits: ['search-submit'],
+  emits: ['search-submit', 'form-submit'],
   methods: {
      getSearchInput(searchInput) {
          this.$emit('search-submit', searchInput)
+     },
+     getData(data) {
+         this.$emit('form-submit', data)
+       
      }
   }
 };
