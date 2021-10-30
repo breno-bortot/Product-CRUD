@@ -15,7 +15,7 @@
           <th scope="row">{{ product.id }}</th>
           <td>{{ product.name }}</td>
           <td>$ {{ product.price.toFixed(2) }}</td>
-          <td class="badge bg-success float-end me-3 mt-2">
+          <td class="badge rounded-pill bg-success float-end me-3 mt-2">
             {{ product.stock }}
           </td>
           <td>
@@ -53,5 +53,8 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+.table > :not(caption) > * > * {
+  padding: 1.5rem 1.5rem !important;
+}
 </style>
