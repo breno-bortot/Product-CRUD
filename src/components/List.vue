@@ -1,11 +1,11 @@
 <template>
-  <div class="card-body">
-    <table class="table table-hover">
+  <div class="card-body table-responsive-md">
+    <table class="table table-hove">
       <thead>
         <tr class="table-dark">
           <th scope="col">#</th>
           <th scope="col">Name</th>
-          <th scope="col">Price $</th>
+          <th scope="col">Price</th>
           <th class="border-end col-1" scope="col">Stock</th>
           <th class="col-1" scope="col">Action</th>
         </tr>
@@ -14,8 +14,8 @@
         <tr :key="product.id" v-for="product in products" class="table-active">
           <th scope="row">{{ product.id }}</th>
           <td>{{ product.name }}</td>
-          <td>{{ product.price.toFixed(2) }}</td>
-          <td class="badge bg-success float-end mx-5 mt-2">
+          <td>$ {{ product.price.toFixed(2) }}</td>
+          <td class="badge bg-success float-end me-3 mt-2">
             {{ product.stock }}
           </td>
           <td>
