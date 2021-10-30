@@ -34,6 +34,11 @@ export default {
       const data = await res.json();
       return data;
     },
+    async fetchProduct() {
+      const res = await fetch(`http://localhost:500/products/${id}`);
+      const data = await res.json();
+      return data;
+    },
   },
   data() {
     return {

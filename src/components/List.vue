@@ -42,14 +42,14 @@
   </div>
 </template>
 <script>
-import ItemList from "./ItemList.vue";
+import Button from "./Modal.vue";
 export default {
   name: "List",
   props: {
     products: Array,
   },
   components: {
-    ItemList,
+    Button,
   },
 };
 </script>

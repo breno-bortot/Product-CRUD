@@ -1,13 +1,5 @@
 <template >
-  <div class="float-end mt-2">
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      Add Product
-    </button>
+  <div>
     <div
       class="modal"
       id="exampleModal"
@@ -28,9 +20,8 @@
               <span aria-hidden="true"></span>
             </button>
           </div>
-         
-            <Form @form-submit="getData" />
-      
+
+          <Form @form-submit="getData" />
         </div>
       </div>
     </div>
@@ -40,17 +31,16 @@
 <script>
 import Form from "./Form.vue";
 export default {
-  name: "Button",
+  name: "Modal",
   components: {
     Form,
   },
-  emits: ['form-submit'], 
+  emits: ["form-submit"],
   methods: {
-     getData(data){
-        this.$emit('form-submit', data)
-     }
-
-  }
+    getData(data) {
+      this.$emit("form-submit", data);
+    },
+  },
 };
 </script>
 <style>
