@@ -6,7 +6,8 @@
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Price $</th>
-          <th class="text-end" scope="col">Stock</th>
+          <th class="border-end col-1" scope="col">Stock</th>
+          <th class="col-1" scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -14,8 +15,23 @@
           <th scope="row">{{ product.id }}</th>
           <td>{{ product.name }}</td>
           <td>{{ product.price.toFixed(2) }}</td>
-          <td class="badge bg-success float-end mt-1 me-2">
+          <td class="badge bg-success float-end mx-5 mt-2">
             {{ product.stock }}
+          </td>
+          <td>
+            <div class="d-flex justify-content-evenly">
+              <button
+                type="button"
+                class="btn btn-outline-warning mx-1"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Edit
+              </button>
+              <button type="button" class="btn btn-outline-danger mx-1">
+                Delete
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
