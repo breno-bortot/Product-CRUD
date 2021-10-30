@@ -1,0 +1,22 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Embutido Cracóvia",
+            "stock": 5,
+            "price": 23
+        },
+        {
+            "id": 2,
+            "name": "Salame Milano",
+            "stock": 15,
+            "price": 42
+        },
+        {
+            "id": 3,
+            "name": "Mortadella",
+            "stock": 25,
+            "price": 12
+        }
+    ]
+}

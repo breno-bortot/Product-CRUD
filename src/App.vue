@@ -29,18 +29,19 @@ export default {
     addProduct(data) {
       console.log(data.name);
     },
+    async fetchProducts() {
+      const res = await fetch("http://localhost:500/products");
+      const data = await res.json();
+      return data;
+    },
   },
   data() {
     return {
       products: [],
     };
   },
-  created() {
-    this.products = [
-      { id: 1, name: "Embutido Cracóvia", stock: 5, price: 23 },
-      { id: 2, name: "Salame Milano", stock: 15, price: 42 },
-      { id: 3, name: "Mortadella", stock: 25, price: 12 },
-    ];
+  async created() {
+    this.products = await this.fetchProducts();
   },
 };
 </script>
