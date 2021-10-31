@@ -28,6 +28,7 @@
             :product="product"
             :editing="editing"
             @add-product="addProduct"
+            @edit-product="editProduct"
           />
         </div>
       </div>
@@ -46,10 +47,13 @@ export default {
   components: {
     Form,
   },
-  emits: ["add-product"],
+  emits: ["add-product", "edit-product"],
   methods: {
     addProduct(newProduct) {
       this.$emit("add-product", newProduct);
+    },
+    editProduct(editedProduct) {
+      this.$emit("edit-product", editedProduct);
     },
   },
 };

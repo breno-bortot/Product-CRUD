@@ -6,7 +6,12 @@
         @search-submit="filterAction"
         title="Product CRUD"
       />
-      <Modal :product="product" :editing="editing" @add-product="addProduct" />
+      <Modal
+        :product="product"
+        :editing="editing"
+        @add-product="addProduct"
+        @edit-product="editProduct"
+      />
       <List @do-edit="doEdit" @delete="deleteProduct" :products="products" />
       <!-- <Footer /> -->
     </div>
@@ -59,9 +64,24 @@ export default {
       this.product = await this.fetchProduct(id);
       this.editing = true;
     },
-    // editProduct(id) {
-    //   console.log(id);
-    // },
+    async editProduct(editedProduct) {
+      const res = await fetch(
+        `http://localhost:500/products/${editedProduct.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editedProduct),
+        }
+      );
+
+      const data = await res.json();
+
+      this.products = this.products.map((product) =>
+        product.id === editedProduct.id ? data : product
+      );
+    },
     async deleteProduct(id) {
       if (confirm("Are you sure?")) {
         const res = await fetch(`http://localhost:500/products/${id}`, {

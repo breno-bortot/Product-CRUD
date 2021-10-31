@@ -1,7 +1,7 @@
 <template>
   <div class="modal-body">
     <form @submit="onSubmit">
-      <!-- $emit('form-submit', formData) -->
+      {{ product }}
       <fieldset>
         <div class="form-group row">
           <label for="productName" class="col-sm-2 col-form-label">Name</label>
@@ -105,23 +105,26 @@ export default {
     onSubmit(e) {
       e.preventDefault();
 
-      if (!this.name && !this.stock && !this.price) {
-        alert("Please fill in all fields");
-        return;
+      if (!this.editing) {
+        if (!this.name && !this.stock && !this.price) {
+          alert("Please fill in all fields");
+          return;
+        }
+
+        const newProduct = {
+          //   id: Math.floor(Math.random() * 100000),
+          name: this.name,
+          stock: this.stock,
+          price: this.price,
+        };
+        this.$emit("add-product", newProduct);
+
+        this.name = "";
+        this.stock = "";
+        this.price = "";
+      } else {
+        this.$emit("edit-product", this.product);
       }
-
-      const newProduct = {
-        //   id: Math.floor(Math.random() * 100000),
-        name: this.name,
-        stock: this.stock,
-        price: this.price,
-      };
-
-      this.$emit("add-product", newProduct);
-
-      this.name = "";
-      this.stock = "";
-      this.price = "";
     },
   },
 };
