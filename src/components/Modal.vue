@@ -21,7 +21,7 @@
             </button>
           </div>
 
-          <Form @form-submit="getData" />
+          <Form @add-product="addProduct" />
         </div>
       </div>
     </div>
@@ -35,10 +35,10 @@ export default {
   components: {
     Form,
   },
-  emits: ["form-submit"],
+  emits: ["add-product"],
   methods: {
-    getData(data) {
-      this.$emit("form-submit", data);
+    addProduct(newProduct) {
+      this.$emit("add-product", newProduct);
     },
   },
 };

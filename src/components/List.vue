@@ -21,6 +21,7 @@
           <td>
             <div class="d-flex justify-content-evenly">
               <button
+                @click="$emit('edit', product.id)"
                 type="button"
                 class="btn btn-outline-warning mx-1"
                 data-bs-toggle="modal"
@@ -28,7 +29,11 @@
               >
                 Edit
               </button>
-              <button type="button" class="btn btn-outline-danger mx-1">
+              <button
+                @click="$emit('delete', product.id)"
+                type="button"
+                class="btn btn-outline-danger mx-1"
+              >
                 Delete
               </button>
             </div>
@@ -36,9 +41,6 @@
         </tr>
       </tbody>
     </table>
-    <!-- <ul :key="product.id" v-for="product in products" class="list-group">
-      <ItemList :product="product" />
-    </ul> -->
   </div>
 </template>
 <script>

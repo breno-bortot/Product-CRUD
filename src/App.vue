@@ -2,11 +2,11 @@
   <div class="container">
     <div class="card border-success mb-3">
       <Header
-        @form-submit="addProduct"
+        @add-product="addProduct"
         @search-submit="filterAction"
         title="Product CRUD"
       />
-      <List :products="products" />
+      <List @edit="editProduct" @delete="deleteProduct" :products="products" />
       <!-- <Footer /> -->
     </div>
   </div>
@@ -26,8 +26,14 @@ export default {
     filterAction(searchInput) {
       console.log(searchInput);
     },
-    addProduct(data) {
-      console.log(data.name);
+    addProduct(newProduct) {
+      this.products = [...this.products, newProduct];
+    },
+    editProduct(id) {
+      console.log(id);
+    },
+    deleteProduct(id) {
+      this.products = this.products.filter((product) => product.id !== id);
     },
     async fetchProducts() {
       const res = await fetch("http://localhost:500/products");

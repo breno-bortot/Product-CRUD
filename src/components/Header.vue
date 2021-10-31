@@ -8,7 +8,7 @@
     >
       Add Product
     </button>
-    <Modal @form-submit="getData" />
+    <Modal @add-product="addProduct" />
     <h1>{{ title }}</h1>
     <SearchBar @search-submit="getSearchInput" />
   </div>
@@ -26,13 +26,13 @@ export default {
     Modal,
     SearchBar,
   },
-  emits: ["search-submit", "form-submit"],
+  emits: ["search-submit", "add-product"],
   methods: {
     getSearchInput(searchInput) {
       this.$emit("search-submit", searchInput);
     },
-    getData(data) {
-      this.$emit("form-submit", data);
+    addProduct(newProduct) {
+      this.$emit("add-product", newProduct);
     },
   },
 };
