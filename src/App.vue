@@ -12,7 +12,11 @@
         @add-product="addProduct"
         @edit-product="editProduct"
       />
-      <List @do-edit="doEdit" @delete="deleteProduct" :products="products" />
+      <List
+        @do-edit="doEdit"
+        @delete="deleteProduct"
+        :products="filteredProducts"
+      />
       <!-- <Footer /> -->
     </div>
   </div>
@@ -35,14 +39,22 @@ export default {
       products: [],
       product: {},
       editing: false,
+      searchInput: "",
     };
   },
   async created() {
     this.products = await this.fetchProducts();
   },
+  computed: {
+    filteredProducts() {
+      return this.products.filter((product) =>
+        product.name.toLowerCase().match(this.searchInput.toLowerCase())
+      );
+    },
+  },
   methods: {
     filterAction(searchInput) {
-      console.log(searchInput);
+      this.searchInput = searchInput;
     },
     doAdd() {
       this.editing = false;
