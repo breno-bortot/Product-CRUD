@@ -24,7 +24,11 @@
             </button>
           </div>
 
-          <Form :editing="editing" @add-product="addProduct" />
+          <Form
+            :product="product"
+            :editing="editing"
+            @add-product="addProduct"
+          />
         </div>
       </div>
     </div>
@@ -37,6 +41,7 @@ export default {
   name: "Modal",
   props: {
     editing: Boolean,
+    product: Object,
   },
   components: {
     Form,

@@ -7,11 +7,19 @@
           <label for="productName" class="col-sm-2 col-form-label">Name</label>
           <div class="col-sm-10">
             <input
+              v-if="!editing"
               type="text"
               class="form-control"
               id="productName"
               v-model="name"
               placeholder="Enter name"
+            />
+            <input
+              v-else
+              type="text"
+              class="form-control"
+              id="productName"
+              v-model="product.name"
             />
           </div>
         </div>
@@ -22,11 +30,21 @@
           >
           <div class="col-sm-10">
             <input
+              v-if="!editing"
               type="number"
               class="form-control"
               id="productStock"
               v-model="stock"
-              placeholder="Enter stock"
+              placeholder="0"
+              min="0"
+            />
+            <input
+              v-else
+              type="number"
+              class="form-control"
+              id="productStock"
+              v-model="product.stock"
+              min="0"
             />
           </div>
         </div>
@@ -38,11 +56,21 @@
             </label>
             <span class="input-group-text">$</span>
             <input
+              v-if="!editing"
               type="number"
               class="form-control"
               id="productPrice"
               v-model="price"
-              placeholder="Enter price"
+              placeholder="0"
+              min="0"
+            />
+            <input
+              v-else
+              type="number"
+              class="form-control"
+              id="productPrice"
+              v-model="product.price"
+              min="0"
             />
           </div>
         </div>
@@ -71,6 +99,7 @@ export default {
   },
   props: {
     editing: Boolean,
+    product: Object,
   },
   methods: {
     onSubmit(e) {

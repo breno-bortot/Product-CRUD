@@ -1,13 +1,12 @@
 <template>
   <div class="container">
     <div class="card border-dark mb-3">
-      {{ editing }}
       <Header
         @do-add="doAdd"
         @search-submit="filterAction"
         title="Product CRUD"
       />
-      <Modal :editing="editing" @add-product="addProduct" />
+      <Modal :product="product" :editing="editing" @add-product="addProduct" />
       <List @do-edit="doEdit" @delete="deleteProduct" :products="products" />
       <!-- <Footer /> -->
     </div>
@@ -29,6 +28,7 @@ export default {
   data() {
     return {
       products: [],
+      product: {},
       editing: false,
     };
   },
@@ -55,7 +55,8 @@ export default {
 
       this.products = [...this.products, data];
     },
-    doEdit(id) {
+    async doEdit(id) {
+      this.product = await this.fetchProduct(id);
       this.editing = true;
     },
     // editProduct(id) {
@@ -79,7 +80,7 @@ export default {
       const data = await res.json();
       return data;
     },
-    async fetchProduct() {
+    async fetchProduct(id) {
       const res = await fetch(`http://localhost:500/products/${id}`);
       const data = await res.json();
       return data;
