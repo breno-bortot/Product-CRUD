@@ -1,12 +1,14 @@
 <template>
   <div class="container">
-    <div class="card border-success mb-3">
+    <div class="card border-dark mb-3">
+      {{ editing }}
       <Header
-        @add-product="addProduct"
+        @do-add="doAdd"
         @search-submit="filterAction"
         title="Product CRUD"
       />
-      <List @edit="editProduct" @delete="deleteProduct" :products="products" />
+      <Modal :editing="editing" @add-product="addProduct" />
+      <List @do-edit="doEdit" @delete="deleteProduct" :products="products" />
       <!-- <Footer /> -->
     </div>
   </div>
@@ -15,25 +17,62 @@
 <script>
 import Header from "./components/Header.vue";
 import List from "./components/List.vue";
+import Modal from "./components/Modal.vue";
 
 export default {
   name: "App",
   components: {
     Header,
     List,
+    Modal,
+  },
+  data() {
+    return {
+      products: [],
+      editing: false,
+    };
+  },
+  async created() {
+    this.products = await this.fetchProducts();
   },
   methods: {
     filterAction(searchInput) {
       console.log(searchInput);
     },
-    addProduct(newProduct) {
-      this.products = [...this.products, newProduct];
+    doAdd() {
+      this.editing = false;
     },
-    editProduct(id) {
-      console.log(id);
+    async addProduct(newProduct) {
+      const res = await fetch("http://localhost:500/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProduct),
+      });
+
+      const data = await res.json();
+
+      this.products = [...this.products, data];
     },
-    deleteProduct(id) {
-      this.products = this.products.filter((product) => product.id !== id);
+    doEdit(id) {
+      this.editing = true;
+    },
+    // editProduct(id) {
+    //   console.log(id);
+    // },
+    async deleteProduct(id) {
+      if (confirm("Are you sure?")) {
+        const res = await fetch(`http://localhost:500/products/${id}`, {
+          method: "DELETE",
+        });
+
+        if (res.status === 200) {
+          this.products = this.products.filter((product) => product.id !== id);
+        } else {
+          alert("Error deleting product");
+        }
+      }
     },
     async fetchProducts() {
       const res = await fetch("http://localhost:500/products");
@@ -45,14 +84,6 @@ export default {
       const data = await res.json();
       return data;
     },
-  },
-  data() {
-    return {
-      products: [],
-    };
-  },
-  async created() {
-    this.products = await this.fetchProducts();
   },
 };
 </script>

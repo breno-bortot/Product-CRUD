@@ -10,7 +10,10 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Add Product</h5>
+            <h5 v-if="!editing" class="modal-title text-success">
+              Add Product
+            </h5>
+            <h5 v-else class="modal-title text-warning">Edit Product</h5>
             <button
               type="button"
               class="btn-close"
@@ -21,7 +24,7 @@
             </button>
           </div>
 
-          <Form @add-product="addProduct" />
+          <Form :editing="editing" @add-product="addProduct" />
         </div>
       </div>
     </div>
@@ -32,6 +35,9 @@
 import Form from "./Form.vue";
 export default {
   name: "Modal",
+  props: {
+    editing: Boolean,
+  },
   components: {
     Form,
   },

@@ -21,7 +21,7 @@
           <td>
             <div class="d-flex justify-content-evenly">
               <button
-                @click="$emit('edit', product.id)"
+                @click="$emit('do-edit', product.id)"
                 type="button"
                 class="btn btn-outline-warning mx-1"
                 data-bs-toggle="modal"

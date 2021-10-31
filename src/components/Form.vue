@@ -48,7 +48,10 @@
         </div>
       </fieldset>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Add</button>
+        <button v-if="!editing" type="submit" class="btn btn-success">
+          Add
+        </button>
+        <button v-else type="submit" class="btn btn-warning">Edit</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
@@ -66,6 +69,9 @@ export default {
       price: "",
     };
   },
+  props: {
+    editing: Boolean,
+  },
   methods: {
     onSubmit(e) {
       e.preventDefault();
@@ -76,7 +82,7 @@ export default {
       }
 
       const newProduct = {
-        id: Math.floor(Math.random() * 100000),
+        //   id: Math.floor(Math.random() * 100000),
         name: this.name,
         stock: this.stock,
         price: this.price,
