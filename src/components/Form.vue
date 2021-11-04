@@ -1,7 +1,6 @@
 <template>
   <div class="modal-body">
     <form @submit="onSubmit">
-      {{ product }}
       <fieldset>
         <div class="form-group row">
           <label for="productName" class="col-sm-2 col-form-label">Name</label>
