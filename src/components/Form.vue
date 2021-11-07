@@ -105,7 +105,7 @@ export default {
        e.preventDefault() 
 
       if (!this.editing) {
-        if (!this.name && !this.stock && !this.price) {
+        if (!this.name || !this.stock || !this.price) {
           alert("Please fill in all fields");
           return;
         }
@@ -122,7 +122,6 @@ export default {
         this.stock = "";
         this.price = "";
 
-     e.preventDefault();
       } else {
         this.$emit("edit-product", this.product);
       }
