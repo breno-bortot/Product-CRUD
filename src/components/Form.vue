@@ -75,10 +75,10 @@
         </div>
       </fieldset>
       <div class="modal-footer">
-        <button v-if="!editing" type="submit" class="btn btn-success">
+        <button v-if="!editing" type="submit" class="btn btn-success" data-bs-dismiss="modal">
           Add
         </button>
-        <button v-else type="submit" class="btn btn-warning">Edit</button>
+        <button v-else type="submit" class="btn btn-warning" data-bs-dismiss="modal">Edit</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     onSubmit(e) {
-      e.preventDefault();
+       e.preventDefault() 
 
       if (!this.editing) {
         if (!this.name && !this.stock && !this.price) {
@@ -121,6 +121,8 @@ export default {
         this.name = "";
         this.stock = "";
         this.price = "";
+
+     e.preventDefault();
       } else {
         this.$emit("edit-product", this.product);
       }
